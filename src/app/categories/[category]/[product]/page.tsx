@@ -17,6 +17,16 @@ const StyledProductPage = styled.div`
 const Product = (currentProductId: any) => {
   const [product, setProduct] = useState<IProduct>()
   const [productId, setProductId] = useState<number>()
+  const [loading, setLoading] = useState<boolean>(true)
+
+  useEffect(() => {
+    if (loading) {
+      if (product) {
+        setLoading(false)
+      }
+    }
+  }, [product])
+
   useEffect(() => {
     const setCurrentProductId = async () => {
       const data = currentProductId.params.product
@@ -42,11 +52,21 @@ const Product = (currentProductId: any) => {
     getProduct()
   }, [productId])
 
-  return (
-    <StyledProductPage>
-      <Card color="white" image="gym.png" link="/" text="Computer" />
-    </StyledProductPage>
-  )
+  if (loading) {
+    return <>Loading...</>
+  }
+  if (product) {
+    return (
+      <StyledProductPage>
+        <Card
+          color="orange"
+          image={product?.image}
+          link="/"
+          text="Buy Product (Amazon)"
+        />
+      </StyledProductPage>
+    )
+  }
 }
 
 export default Product

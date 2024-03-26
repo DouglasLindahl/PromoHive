@@ -22,6 +22,15 @@ const StyledCategoriesPage = styled.section`
 
 export default function Categories() {
   const [categories, setCategories] = useState<ICategory[]>()
+  const [loading, setLoading] = useState<boolean>(true)
+
+  useEffect(() => {
+    if (loading) {
+      if (categories) {
+        setLoading(false)
+      }
+    }
+  }, [categories])
 
   useEffect(() => {
     async function getCategories() {
@@ -32,8 +41,10 @@ export default function Categories() {
     }
     getCategories()
   }, [])
-  console.log(categories)
 
+  if (loading) {
+    return <>Loading...</>
+  }
   return (
     <StyledCategoriesPage>
       {categories &&

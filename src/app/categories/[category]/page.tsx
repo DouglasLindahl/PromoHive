@@ -25,6 +25,16 @@ const StyledProductPage = styled.div`
 const Category = (currentCategory: any) => {
   const [category, setCategory] = useState<string>('')
   const [products, setProducts] = useState<IProduct[]>()
+  const [loading, setLoading] = useState<boolean>(true)
+
+  useEffect(() => {
+    if (loading) {
+      if (products) {
+        setLoading(false)
+      }
+    }
+  }, [products])
+
   useEffect(() => {
     const setCurrentCategory = async () => {
       const data = currentCategory.params.category
@@ -47,6 +57,9 @@ const Category = (currentCategory: any) => {
     }
     getProducts()
   }, [category])
+  if (loading) {
+    return <>Loading...</>
+  }
   return (
     <StyledProductPage>
       {products &&
