@@ -1,8 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    env: {
-        SUPABASE_KEY: process.env.SUPABASE_KEY,
-      },
-};
+  env: {
+    SUPABASE_KEY: process.env.SUPABASE_KEY,
+  },
+}
 
-export default nextConfig;
+export default nextConfig
