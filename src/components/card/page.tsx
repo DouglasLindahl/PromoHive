@@ -5,6 +5,7 @@ interface IProps {
   image: string
   color: string
   link: string
+  fullImage?: boolean
 }
 
 const StyledCard = styled.div<{ color: string }>`
@@ -12,15 +13,17 @@ const StyledCard = styled.div<{ color: string }>`
   background-color: ${(props) => props.color};
   border-radius: 16px;
 `
-const StyledImageSection = styled.div`
+const StyledImageSection = styled.div<{ fullImage?: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 200px;
+  padding: ${(props) => (props.fullImage ? '0' : '32px')};
 `
-const StyledImage = styled.img`
-  height: 80%;
-  opacity: 60%;
+const StyledImage = styled.img<{ fullImage?: boolean }>`
+  width: ${(props) => (props.fullImage ? 'auto' : '60%')};
+  height: ${(props) => (props.fullImage ? 'auto' : '100%')};
+  max-height: 400px;
+  max-width: 100%;
 `
 const StyledButton = styled.button`
   background: none;
@@ -41,8 +44,8 @@ const Card = (props: IProps) => {
   return (
     <StyledCard color={props.color}>
       <a href={`/${props.link}`}>
-        <StyledImageSection>
-          <StyledImage src={`/${props.image}`} />
+        <StyledImageSection fullImage={props.fullImage}>
+          <StyledImage src={props.image} fullImage={props.fullImage} />
         </StyledImageSection>
         <StyledButton>{props.text}</StyledButton>
       </a>

@@ -11,6 +11,8 @@ export interface IProduct {
   category: string
   image: string
   displayName: string
+  link: string
+  text: string
 }
 
 const StyledProductPage = styled.div`
@@ -67,9 +69,10 @@ const Category = (currentCategory: any) => {
           <Card
             color="white"
             key={index}
-            text={capitalizeFirstLetter(product.product)}
+            text={capitalizeFirstLetter(product.displayName)}
             image={product.image}
             link={`categories/${category}/${product.id}`}
+            fullImage
           />
         ))}
     </StyledProductPage>

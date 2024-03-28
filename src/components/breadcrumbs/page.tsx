@@ -9,6 +9,8 @@ const StyledBreadcrumbs = styled.div`
   flex-direction: row;
   align-items: center;
   padding: 16px;
+  top: 0;
+  left: 0;
 `
 
 const Separator = styled.span`

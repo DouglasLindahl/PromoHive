@@ -3,7 +3,6 @@ import { useEffect, useState } from 'react'
 import { IProduct } from '@/app/categories/[category]/page'
 import supabase from '../../../../../supabase'
 import styled from 'styled-components'
-import Card from '@/components/card/page'
 
 const StyledProductPage = styled.div`
   width: 100%;
@@ -12,6 +11,38 @@ const StyledProductPage = styled.div`
   flex-wrap: wrap;
   justify-content: center;
   gap: 32px;
+`
+
+const ProductImage = styled.img`
+  width: 400px;
+  height: 400px;
+  object-fit: contain;
+`
+
+const ProductDetails = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+`
+
+const ProductTitle = styled.h2`
+  font-size: 24px;
+`
+
+const ProductCategory = styled.p`
+  font-size: 18px;
+  color: #666;
+`
+
+const ProductLink = styled.a`
+  font-size: 24px;
+  color: #007bff;
+  text-decoration: none;
+  cursor: pointer;
+`
+const ProductText = styled.p`
+  width: 50%;
 `
 
 const Product = (currentProductId: any) => {
@@ -52,18 +83,20 @@ const Product = (currentProductId: any) => {
     getProduct()
   }, [productId])
 
+  console.log(product)
   if (loading) {
     return <>Loading...</>
   }
   if (product) {
     return (
       <StyledProductPage>
-        <Card
-          color="orange"
-          image={product?.image}
-          link="/"
-          text="Buy Product (Amazon)"
-        />
+        <ProductDetails>
+          <ProductCategory>{product.category}</ProductCategory>
+          <ProductImage src={product.image} alt={product.displayName} />
+          <ProductTitle>{product.displayName}</ProductTitle>
+          <ProductLink href={product.link}>Buy Now (Amazon)</ProductLink>
+          <ProductText>{product.text}</ProductText>
+        </ProductDetails>
       </StyledProductPage>
     )
   }
