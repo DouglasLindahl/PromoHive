@@ -18,6 +18,7 @@ const ProductImage = styled.img`
   height: 400px;
   object-fit: contain;
 `
+//
 
 const ProductDetails = styled.div`
   display: flex;
