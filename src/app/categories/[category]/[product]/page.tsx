@@ -93,7 +93,7 @@ const Product = (currentProductId: any) => {
         <ProductDetails>
           <ProductCategory>{product.category}</ProductCategory>
           <ProductImage src={product.image} alt={product.displayName} />
-          <ProductTitle>{product.displayName}</ProductTitle>
+          <ProductTitle>{`${product.displayName} ($${product.price})`}</ProductTitle>
           <ProductLink href={product.link}>Buy Now (Amazon)</ProductLink>
           <ProductText>{product.text}</ProductText>
         </ProductDetails>

@@ -13,6 +13,7 @@ export interface IProduct {
   displayName: string
   link: string
   text: string
+  price: number
 }
 
 const StyledProductPage = styled.div`

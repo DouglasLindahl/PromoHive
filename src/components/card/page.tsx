@@ -34,7 +34,7 @@ const StyledButton = styled.button`
   padding: 4px 8px;
   color: black;
   width: 100%;
-  height: 60px;
+  font-weight: 500;
   font-size: 28px;
   background-color: gainsboro;
   border-radius: 0 0 16px 16px;
